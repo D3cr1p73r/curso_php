@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>RHCCI039</title>
+	<link rel="stylesheet" href="recursos/icons/fontawesome5/css/all.css">
+	<link rel="stylesheet" href="recursos/icons/fontawesome5/css/fontawesome.min.css">
   </head>
   <body border="black" >
   </br>
@@ -84,18 +86,16 @@
 			</div>
 		</div>
 		<!---->
-		<div class="row justify-content-md-center" style="text-align : center;border : solid;">
-			<div class="col col-lg-11" style="border-width: 0px">
-				<div class="col col-lg-3" >
-					RX pós operatório realizado
+		<div class="row justify-content-md-center" >
+			<div class="col col-8" style="border : solid; text-align : center;" >
+				<div>
+					<i class="far fa-square"></i>&nbsp;RX pós operatório realizado
+					&nbsp;&nbsp;
+					<i class="far fa-square"></i>&nbsp;Etiqueta Anexa
+					&nbsp;&nbsp;
+					<i class="far fa-square"></i>&nbsp;Dispensa emissão de etiqueta
 				</div>
-				<div class="col col-lg-3" >
-					Etiqueta Anexa
-				</div>
-				<div class="col col-lg-3" >
-					Dispensa emissão de etiqueta
-				</div>
-			</div> 
+			</div>
 		</div>
 		</br>
 		<div class="row justify-content-md-left" style="text-align : left; font-size:12px;">
@@ -134,7 +134,6 @@
 			</div>
 		</div>
 	</nav>
-		
 		
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
