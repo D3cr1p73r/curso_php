@@ -28,18 +28,19 @@
 	<div class="container">
 		   <div class="row justify-content-md-center">
 				<div class="col col-lg-2 justify-content-md-left">
-				<img  style="width:70%" src="recursos/img/logo_austa_hospital_30X30.gif">
+				<img  style="width:100%; align : right;" src="recursos/img/logo_austa_hospital_30X30.gif">
+				&nbsp;
 				  <!-- 1 of 3 -->
 				</div>
-				<div class="col col-lg-9" >
+				<!-- <div class="col col-lg-auto" > -->
 					<div style="font-size:12px; text-align : center;">
 						</br>
-						<h5><u>COMUNICAÇÃO DE UTILIZAÇÃO DE ÓRTESE, PRÓTESE E MATERIAIS ESPECIAIS</u></br>
-						<u >UNIDADES DE INTERNACAO</u></h5>
+						<h6><u>COMUNICAÇÃO DE UTILIZAÇÃO DE ÓRTESE, PRÓTESE E MATERIAIS ESPECIAIS</u></br>
+						<u >UNIDADES DE INTERNACAO</u></h6>
 						
 					</div>
-				</div>
-				<div class="col col-lg-1 " style="font-size:12px; text-align : right;">
+				<!-- </div> -->
+				<div class="col col-lg-auto " style="font-size:12px; text-align : right;">
 				  </br>
 				  RHCCI039</br>
 				  HOSPPRD </br>
@@ -87,7 +88,7 @@
 		</div>
 		<!---->
 		<div class="row justify-content-md-center" >
-			<div class="col col-8" style="border : solid; text-align : center;" >
+			<div class="col col-8" style="border : solid; border-width: 1px; text-align : center;" >
 				<div>
 					<i class="far fa-square"></i>&nbsp;RX pós operatório realizado
 					&nbsp;&nbsp;
