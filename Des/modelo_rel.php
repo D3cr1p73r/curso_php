@@ -84,16 +84,18 @@
 			</div>
 		</div>
 		<!---->
-		<div class="row justify-content-md-center" style="text-align : center;">
-		    <div class="col col-lg-3" >
-				RX pós operatório realizado
-			</div>
-			<div class="col col-lg-3" >
-				Etiqueta Anexa
-			</div>
-			<div class="col col-lg-3" >
-				Dispensa emissão de etiqueta
-			</div>
+		<div class="row justify-content-md-center" style="text-align : center;border : solid;">
+			<div class="col col-lg-11" style="border-width: 0px">
+				<div class="col col-lg-3" >
+					RX pós operatório realizado
+				</div>
+				<div class="col col-lg-3" >
+					Etiqueta Anexa
+				</div>
+				<div class="col col-lg-3" >
+					Dispensa emissão de etiqueta
+				</div>
+			</div> 
 		</div>
 		</br>
 		<div class="row justify-content-md-left" style="text-align : left; font-size:12px;">
