@@ -1,0 +1,218 @@
+* {
+    font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
+}
+
+.row::after {
+content: "";
+clear: both;
+display: table;
+}
+
+[class*="col-"] {
+float: left;
+padding: 15px;
+}  
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}  
+
+body {
+    height: 100vh;
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 75px 1fr 30px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "cabecalho"
+        "principal"
+        "rodape";
+}
+
+.border-round{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 5px;
+
+}
+
+.sticky {
+    padding: 5px;
+    position: sticky;
+    top: 0;
+  }
+
+.right{
+  /* position: absolute; */
+  right: 100px;
+}
+
+p.btn{
+  background-color: #2456A7;
+  color: white;
+  padding: 5px;
+  border-radius: 15%;
+}
+
+.font_white{
+  color: white;
+  text-decoration: none;
+}
+
+.cabecalho {
+    grid-area: cabecalho;
+    /* background-color: #8ba0b8; */
+    background-image: url('../imagens/logo_austa_hospital.gif');
+    background-size: 18%;
+    background-repeat: no-repeat;
+    color: #2456A7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    z-index: 1;
+    box-shadow: 0px 4px 4px -2px rgba(0,0,0,0.75);
+}
+
+.cabecalho > h1 {
+    margin: 0px;
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+.cabecalho > h2 {
+    margin: 0px;
+    font-weight: 200;
+    font-size: 1.6rem;
+}
+
+.principal {
+    grid-area: principal;
+    /* height: 100%; */
+    height: calc(100vh - 105px);
+    background-color: #f0f0f0;
+    padding: 10px;
+    float: right;
+}
+
+.conteudo {
+    overflow-y: scroll;
+    position: relative;
+    height: 100%;
+    float: right;
+    background-color: #fff;
+    padding: 5px;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* ================ */
+.vertical-menu {
+    height: 100%;
+    /* width: 16.67201%; */
+    float: left;
+  }
+  
+  .vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    font-size: 15px;
+    text-decoration: none;
+  }
+  
+  .vertical-menu a:hover {
+    background-color: #ccc;
+  }
+  
+  .vertical-menu a.active {
+    background-color: skyblue;
+    color: white;
+    cursor: default;
+  }
+  /* ======= */
+
+.rodape {
+    grid-area: rodape;
+    background-color:skyblue;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1rem;
+    padding-right: 20px;
+    color: #444;
+}
+.rodape.right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: right;
+}
+.rodape.left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+p.divisao {
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+hr {
+    margin-top: 0px;
+}
+
+/*=============== Tabelas=========== */
+#table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #table td, #table th {
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+  
+  #table tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #table tr:hover {background-color: #ddd;}
+  
+  #table th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    background-color: #2456A7;
+    color: white;
+    position: sticky;
+    top: 0;
+  }
+  /* ====================================================== */
+  /* ==================Inputs======================= */
+  input[type=submit] {
+    /* width: 100%; */
+    background-color:skyblue;
+    color: white;
+    padding: 3px 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #2456A7;
+  }
+  

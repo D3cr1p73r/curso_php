@@ -1,3 +1,15 @@
+<?php 
+session_start();
+
+if($_COOKIE['usuario']) {
+    $_SESSION['usuario'] = $_COOKIE['usuario'];
+}
+
+if(!$_SESSION['usuario']) {
+    header('Location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,85 +23,13 @@
         <h1>Curso PHP</h1>
         <h2>Índice dos Exercícios</h2>
     </header>
+    <nav class="navegacao">
+        <span class="usuario">Usuário: <?= $_SESSION['usuario'] ?></span>
+        <a href="logout.php" class="vermelho">Sair</a>
+    </nav>
     <main class="principal">
         <div class="conteudo">
-            <nav class="modulos">
-                <div class="modulo verde">
-                    <h3>Básico</h3>
-                    <ul>
-                        <li>
-                            <a href="exercicio.php?dir=basico&file=ola">
-                                Olá PHP
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=basico&file=html">
-                                Integração HTML
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=basico&file=css">
-                                Integração CSS
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=basico&file=comentarios">
-                                Comentários PHP
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=basico&file=desafio">
-                                Desafio
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="modulo vermelho">
-                    <h3>Tipos</h3>
-                    <ul>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=int">
-                                Tipo Inteiro
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=float">
-                                Tipo Float
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=aritmeticas">
-                                Op. Aritméticas
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=desafio_precedendia">
-                                Desafio Precedência
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=string">
-                                Tipo String
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=desafio_string">
-                                Desafio String
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=booleano">
-                                Tipo Booleano
-                            </a>
-                        </li>
-                        <li>
-                            <a href="exercicio.php?dir=tipos&file=conversoes">
-                                Conversões
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <?php require_once('menu.php'); ?>
         </div>
     </main>
     <footer class="rodape">
