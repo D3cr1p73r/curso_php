@@ -1,52 +1,44 @@
 <?php 
+require_once("recursos/functions/funcoes.php");
 session_start();
-error_reporting(0);
-ini_set("display_errors", 0 );
-
-$user       = $_POST['user'];
-$password   = $_POST['password'];
-if ($_POST['user']){
-    $users = [
-        [
-            "user" => "giervolino",
-            "password" => "senha123#",
-        ],
-        [
-            "user" => "teste",
-            "password" => "teste",
-        ],
-    ];
-
-    foreach($users as $login){
-        $validUser =  $user === $login['user'];
-        $validPassw = $password === $login['password'];
-
-        if($validUser && $validPassw){
-            $_SESSION['user'] = $login['user'];
-            $_SESSION['errors'] = null;
-            $exp = time() + 60 * 60 * 24 * 30;
-            // Criar cookie para usu√°rio:
-            setcookie('user', $_SESSION['user'],$exp);
-            header('Location: index.php#');
-        }
-    }
-    if(!$_SESSION['user']){
-        $_SESSION['errors'] = 'Usu√°rio ou senha iv√°lida';
+// print_r($_POST);
+if ($_POST['user'] and $_POST['password']){
+    $login['user'] = strtoupper($_POST['user']);
+    $login['password'] = strtoupper(md5($_POST['password']));
+    $logon = checaLogin($login);
+    if ($logon['chk_login'] == 1){
+        echo "Logon bem sucedido";
+        $_SESSION['user'] = $login['user'];
+        $exp = time() + 60 * 60 * 24 * 30;
+        // Criar cookie para usu·rio:
+        setcookie('user', $login['user'],$exp);
+        unset($_POST);
+        header('Location: index.php');
+    }else{
+        // echo "Logon mal sucedido";
+        // print_r($logon);
+        // echo "<br>";
+        // print_r($login);
+        $error = 'Usu·rio ou senha inv·lidos';
+        unset($_POST);
     }
 }
+// session_destroy();
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- <meta name="author" content="Diego Ferreira"> -->
+    <meta name="author" content="Giulianno Ferrari Iervolino">
     <meta name="description" content="Tela de Login">
     <meta charset="utf-8" />
     <title>Login</title>
     <link rel="stylesheet" href="recursos/css/login.css">
 </head>
+
     <body>
+        <?php echo $_POST['user']; ?>
         <div class="container">
             <div class = 'box'>
                 <div class="form-box">
@@ -64,16 +56,15 @@ if ($_POST['user']){
                             <input type="submit" value="Entrar" class="form-btn">
                         </div>
                         <div>
-                            N√£o √© Cadastrado? <a href="telas/usuario/cadastro.html">Crie uma Conta</a>
+                            N„o È Cadastrado? <a href="telas/usuario/cadastro.php">Crie uma Conta</a>
                         </div>
-                        <?php if ($_SESSION['errors']): ?>
-                            <div>
-                                <?php foreach ($_SESSION['errors'] as $error): ?>
-                                    <p><?= $error ?></p>
-                                <?php endforeach ?>
-                            </div>
+                        <?php if ($error != null):?>
+                            <!-- <div class='message'> -->
+                            <span style="color: red;">
+                                <?php if ($error != null){ echo $error;} ?>
+                            <!-- </div> -->
+                            </span>
                         <?php endif ?>
-
                     </form>
                 </div>
             </div>

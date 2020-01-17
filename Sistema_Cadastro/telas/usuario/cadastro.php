@@ -1,0 +1,41 @@
+<?php
+    require_once("../../recursos/functions/funcoes.php");
+    // print_r($_POST);
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta name="description" content="exemplo de uma página de cadastro">
+    <meta name="keywords" content="html5, css3, front-end, tecnologia">
+    <meta charset="utf-8" />
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="../../recursos/css/login.css">
+</head>
+    <body>
+        <div class="container">
+            <div class="form-box">
+                <form action="" method="post">
+                    <div>
+                        <h1>Cadastro do Usuário</h1>
+                    </div>
+                    <div>
+                        <input type="text" name="nome" placeholder="Informe o seu Login" class="form-input">
+                    </div>
+                    <div>
+                        <input type="password" name="senha" placeholder="Informe a sua Senha" class="form-input">
+                    </div>
+                    <div>
+                        <input type="email" name="email" placeholder="Informe o seu E-mail" class="form-input">
+                    </div>
+                    <div>
+                        <input type="submit" value="Cadastrar" class="form-btn">
+                    </div>
+                    <div>
+                        Você já tem uma conta? <a href="../../login.php">Efetue o seu Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

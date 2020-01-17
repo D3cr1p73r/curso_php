@@ -41,8 +41,9 @@ body {
 .border-round{
     border-style: solid;
     border-width: 1px;
-    border-color: black;
+    border-color: rgb(206, 204, 204);
     border-radius: 5px;
+    background-color: #c7d9ec;
 
 }
 
@@ -51,6 +52,37 @@ body {
     position: sticky;
     top: 0;
   }
+
+.message{
+  float: left;
+  padding: 10px;
+  background-color:#ffcce0 ;
+  text-decoration: none;
+  border-radius: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.message a{
+  height: 100%;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+}
+.message:hover {
+  background-color: #ffe6e6;
+}
+
+
+.icon{
+  width: 20px;
+
+}
+.icon_m{
+  width: 25px;
+
+}
+/* .icon:hover {background-color: white;} */
 
 .right{
   /* position: absolute; */
@@ -85,23 +117,11 @@ p.btn{
     box-shadow: 0px 4px 4px -2px rgba(0,0,0,0.75);
 }
 
-.cabecalho > h1 {
-    margin: 0px;
-    font-weight: 300;
-    font-size: 2rem;
-}
-
-.cabecalho > h2 {
-    margin: 0px;
-    font-weight: 200;
-    font-size: 1.6rem;
-}
-
 .principal {
     grid-area: principal;
-    /* height: 100%; */
-    height: calc(100vh - 105px);
-    background-color: #f0f0f0;
+    height: 100%;
+    height: calc(100vh - 120px);
+    /* background-color: #f0f0f0; */
     padding: 10px;
     float: right;
 }
@@ -116,11 +136,13 @@ p.btn{
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* ================ */
+/* =====Menu=================== */
 .vertical-menu {
     height: 100%;
     /* width: 16.67201%; */
     float: left;
+    /* border-radius: 5px; */
+    /* border: solid; */
   }
   
   .vertical-menu a {
@@ -130,6 +152,7 @@ p.btn{
     padding: 12px;
     font-size: 15px;
     text-decoration: none;
+    
   }
   
   .vertical-menu a:hover {
@@ -141,7 +164,7 @@ p.btn{
     color: white;
     cursor: default;
   }
-  /* ======= */
+  /* =========================== */
 
 .rodape {
     grid-area: rodape;
@@ -153,17 +176,6 @@ p.btn{
     padding-right: 20px;
     color: #444;
 }
-.rodape.right{
-  display: flex;
-  justify-content: flex-end;
-  align-items: right;
-}
-.rodape.left{
-  display: flex;
-  justify-content: flex-start;
-  align-items: left;
-}
-
 p.divisao {
     margin-bottom: 0px;
     font-weight: bold;
@@ -179,6 +191,7 @@ hr {
     border-collapse: collapse;
     width: 100%;
     height: 100%;
+    border-radius: 5px;
   }
   
   #table td, #table th {
@@ -198,6 +211,10 @@ hr {
     color: white;
     position: sticky;
     top: 0;
+    font-size: small;
+  }
+  #table td {
+    font-size: small;
   }
   /* ====================================================== */
   /* ==================Inputs======================= */
@@ -215,4 +232,199 @@ hr {
   input[type=submit]:hover {
     background-color: #2456A7;
   }
+
+  /* ================forms================== */
+  .form-style-3{
+    /* max-width: 450px; */
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  }
+  .form-style-3 label{
+    display:block;
+    margin-bottom: 0px;
+  }
+  .form-style-3 label > span{
+    /* float: left; */
+    /* width: 80px; */
+    color: black;
+    font-weight: bold;
+    font-size: 13px;
+    /* text-shadow: 1px 1px 1px #fff; */
+  }
+  .form-style-3 fieldset{
+    /* border-radius: 10px; */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid #FFD2D2;
+    padding: 10px;
+    background: #cfdae6;
+    box-shadow: inset 0px 0px 15px #bcd3eb;
+    -moz-box-shadow: inset 0px 0px 15px #bcd3eb;
+    -webkit-box-shadow: inset 0px 0px 15px #bcd3eb;
+  }
+  .form-style-3 fieldset legend{
+    color: black;
+    border-top: 1px solid skyblue;
+    border-left: 1px solid skyblue;
+    border-right: 1px solid skyblue;
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    background:#e6e6ff;
+    padding: 0px 8px 3px 8px;
+    box-shadow: -0px -1px 2px #F1F1F1;
+    -moz-box-shadow:-0px -1px 2px #F1F1F1;
+    -webkit-box-shadow:-0px -1px 2px #F1F1F1;
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .form-style-3 textarea{
+    width:250px;
+    height:60px;
+    text-align: left;
+  }
+
+  .form-style-3 input[type=text],
+  .form-style-3 input[type=date],
+  .form-style-3 input[type=datetime],
+  .form-style-3 input[type=number],
+  .form-style-3 input[type=search],
+  .form-style-3 input[type=time],
+  .form-style-3 input[type=url],
+  .form-style-3 input[type=email],
+  .form-style-3 select, 
+  .form-style-3 textarea{
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid skyblue;
+    outline: none;
+    color: black;
+    padding: 5px 8px 5px 8px;
+    box-shadow: inset 1px 1px 4px white;
+    -moz-box-shadow: inset 1px 1px 4px white;
+    -webkit-box-shadow: inset 1px 1px 4px white;
+    background: white;
+    width:100%;
+  }
+  .form-style-3 input[type=file]{
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid skyblue;
+    outline: none;
+    color: black;
+    /* padding: 2px 2px 2px 2px; */
+    padding: 3px;
+    box-shadow: inset 1px 1px 4px white;
+    -moz-box-shadow: inset 1px 1px 4px white;
+    -webkit-box-shadow: inset 1px 1px 4px white;
+    background: white;
+    width:100%;
+  }
+
+  .form-style-3  input[type=submit],
+  .form-style-3  input[type=button]{
+    background:#2456A7;
+    border: 1px solid skyblue;
+    padding: 5px 15px 5px 15px;
+    color: white;
+    box-shadow: inset -1px -1px 3px white;
+    -moz-box-shadow: inset -1px -1px 3px white;
+    -webkit-box-shadow: inset -1px -1px 3px white;
+    border-radius: 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;	
+    font-weight: bold;
+  }
+  .form-style-3  button{
+    background:#2456A7;
+    border: 1px solid skyblue;
+    padding: 5px 15px 5px 15px;
+    color: white;
+    box-shadow: inset -1px -1px 3px white;
+    -moz-box-shadow: inset -1px -1px 3px white;
+    -webkit-box-shadow: inset -1px -1px 3px white;
+    border-radius: 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;	
+    font-weight: bold;
+  }
+  .required{
+    color:red;
+    font-weight:normal;
+  }
+
+  .green{
+    color:#008000;
+    font-weight:normal;
+  }
+
+  .blockedField{
+    /* height: 100%; */
+    /* width: 100%; */
+    /* overflow-y: scroll; */
+    background-color: white;
+    padding: 3px;
+    border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border: 1px solid skyblue;
+      outline: none;
+      color: black;
+      /* padding: 5px 8px 5px 8px; */
+      box-shadow: inset 1px 1px 4px white;
+      -moz-box-shadow: inset 1px 1px 4px white;
+      -webkit-box-shadow: inset 1px 1px 4px white;
+  }
+  .blockedField_div{
+    height:80px;
+    width: 100%;
+    overflow-y: scroll;
+    background-color: white;
+    padding: 3px;
+    border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border: 1px solid skyblue;
+      outline: none;
+      color: black;
+      padding: 5px 8px 5px 8px;
+      box-shadow: inset 1px 1px 4px white;
+      -moz-box-shadow: inset 1px 1px 4px white;
+      -webkit-box-shadow: inset 1px 1px 4px white;
+  }
+
+  /* ================forms================== */
+
+  /* ==============tooltip============== */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }   
+  /* ==============tooltip============== */
   
