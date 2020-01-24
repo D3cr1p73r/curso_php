@@ -1,11 +1,10 @@
 <?php
-
-
+  setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8');
   header("Expires: 0");
   header("Cache-Control: no-store, no-cache, must-revalidate");
   header("Cache-Control: post-check=0, pre-check=0", false);
   header("Pragma: no-cache");
-    session_start();
+  session_start();
 
     // Verificar se o cookie existe e utiliza-lo em caso positivo
     if($_COOKIE['user']){
@@ -23,9 +22,9 @@
     <meta charset="windows-1252">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Solicitaï¿½ï¿½o de Cadastro</title>
-    <link rel="stylesheet" href="recursos/css/style.css">  
-    <link rel="icon" type="imagem/png" href="recursos/icons/favicon.png" />  
+    <title>Solicitação de Cadastro</title>
+    <link rel="stylesheet" href="src/css/style.css">  
+    <link rel="icon" type="imagem/png" href="src/icons/favicon.png" />  
     
 </head>
 <body>
@@ -38,8 +37,16 @@
         ?>
         <div class="principal col-10">
          <div class="conteudo col-12">
-            <?php    
-                
+            <?php  
+                 if ( $_SESSION['tela'] == 'solicitar' && $_SESSION['cod_sol'] 
+                    && $_GET['file'] == 'telas/solicitarCadastro.php'){
+                    echo "<div class='message'>
+                            <a href='index.php?file=telas/acompanharSolicitacao.php'>
+                                Solicitação {$_SESSION['cod_sol']} gravada. Clique para voltar à consulta
+                            </a>
+                          </div>";
+                    }
+                // echo "Mensagem";
                 if (isset($_GET['file']) == 1) {
                     include("{$_GET['file']}");
                 }else{

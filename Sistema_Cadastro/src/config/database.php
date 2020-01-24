@@ -1,4 +1,5 @@
 <?php
+ 
  class Database{
      public static function getConnection(){
          $envPath = realpath(dirname(__FILE__).'/../env.ini');
@@ -24,13 +25,14 @@
 
      }
      public static function runDDL($ddl){
-         
+        $envPath = realpath(dirname(__FILE__).'/../env.ini');
+        $env     = parse_ini_file($envPath); 
         // $banco = "(DESCRIPTION = (ADDRESS_LIST=(ADDRESS = (PROTOCOL = TCP)(HOST = austa-scan.austa.local)(PORT = 1521)))(LOAD_BALANCE = yes)(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = teste_ha) (FAILOVER_MODE =(TYPE = SELECT) (METHOD = BASIC)(RETRIES = 180) (DELAY = 5))))";
         $banco = "(DESCRIPTION =
                         (ADDRESS_LIST =
                             (ADDRESS = 
                                 (PROTOCOL = TCP)
-                                (HOST = 192.168.10.36)
+                                (HOST = ".$env['host'].")
                                 (PORT = 1521)
                             )
                         )
@@ -39,19 +41,20 @@
                         )
                     )
                     ";
-        $conn = OCILogon ("hospprd","ha13morpheu", $banco);
+        $conn = OCILogon ($env['username'],$env['password'], $banco);
         $stmt = oci_parse($conn, $ddl);
         oci_execute($stmt) or die ($ddl);
         oci_close($conn);
     }
      public static function runQuery($query){
-         
+        $envPath = realpath(dirname(__FILE__).'/../env.ini');
+        $env     = parse_ini_file($envPath); 
         // $banco = "(DESCRIPTION = (ADDRESS_LIST=(ADDRESS = (PROTOCOL = TCP)(HOST = austa-scan.austa.local)(PORT = 1521)))(LOAD_BALANCE = yes)(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = teste_ha) (FAILOVER_MODE =(TYPE = SELECT) (METHOD = BASIC)(RETRIES = 180) (DELAY = 5))))";
         $banco = "(DESCRIPTION =
                         (ADDRESS_LIST =
                             (ADDRESS = 
                                 (PROTOCOL = TCP)
-                                (HOST = 192.168.10.36)
+                                (HOST = ".$env['host'].")
                                 (PORT = 1521)
                             )
                         )
@@ -60,7 +63,7 @@
                         )
                     )
                     ";
-        $conn = OCILogon ("hospprd","ha13morpheu", $banco);
+        $conn = OCILogon ($env['username'],$env['password'], $banco);
         $stmt = oci_parse($conn, $query);
         oci_execute($stmt) or die ($query);
 

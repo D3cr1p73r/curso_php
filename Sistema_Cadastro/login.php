@@ -1,16 +1,17 @@
 <?php 
-require_once("recursos/functions/funcoes.php");
+require_once("src/functions/funcoes.php");
 session_start();
 // print_r($_POST);
 if ($_POST['user'] and $_POST['password']){
     $login['user'] = strtoupper($_POST['user']);
     $login['password'] = strtoupper(md5($_POST['password']));
+    ECHO $login['password'] ;
     $logon = checaLogin($login);
     if ($logon['chk_login'] == 1){
         echo "Logon bem sucedido";
         $_SESSION['user'] = $login['user'];
         $exp = time() + 60 * 60 * 24 * 30;
-        // Criar cookie para usuário:
+        // Criar cookie para usuï¿½rio:
         setcookie('user', $login['user'],$exp);
         unset($_POST);
         header('Location: index.php');
@@ -19,7 +20,7 @@ if ($_POST['user'] and $_POST['password']){
         // print_r($logon);
         // echo "<br>";
         // print_r($login);
-        $error = 'Usuário ou senha inválidos';
+        $error = 'Usuï¿½rio ou senha invï¿½lidos';
         unset($_POST);
     }
 }
@@ -34,7 +35,7 @@ if ($_POST['user'] and $_POST['password']){
     <meta name="description" content="Tela de Login">
     <meta charset="utf-8" />
     <title>Login</title>
-    <link rel="stylesheet" href="recursos/css/login.css">
+    <link rel="stylesheet" href="src/css/login.css">
 </head>
 
     <body>
@@ -56,7 +57,7 @@ if ($_POST['user'] and $_POST['password']){
                             <input type="submit" value="Entrar" class="form-btn">
                         </div>
                         <div>
-                            Não é Cadastrado? <a href="telas/usuario/cadastro.php">Crie uma Conta</a>
+                            Nï¿½o ï¿½ Cadastrado? <a href="telas/usuario/cadastro.php">Crie uma Conta</a>
                         </div>
                         <?php if ($error != null):?>
                             <!-- <div class='message'> -->

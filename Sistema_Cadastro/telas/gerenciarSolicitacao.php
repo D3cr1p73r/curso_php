@@ -1,8 +1,9 @@
-<h4>Gerenciar SolicitaÁıes:</h4>
+<!-- <h4>Gerenciar SolicitaÁıes:</h4> -->
 <?php 
     if ($_GET['cod']) :
-        require_once("recursos/functions/funcoes.php");
+        require_once("src/functions/funcoes.php");
         $solic = buscaSolicitacao($_GET['cod']);
+        $anexos = buscaAnexo($_GET['cod']);
         $obsHist = buscaHistObs($_GET['cod']);
         if (count($_POST) > 0){
             $newData = $_POST;
@@ -59,84 +60,65 @@
                 alteraSolicitacao($upd);
                 echo "<div class='message'>
                                 <a href='index.php?file=telas/acompanharSolicitacao.php'>    
-                                    Alteraùùo realizada
+                                    AlteraÁ„o realizada
                                 </a>
                         </div>";
             }
         }
-        
+        // print_r($anexos);
 ?>
 <div class="form-style-3">
-<form action="#" method="POST" >
-  <fieldset><legend>SolicitaÁ„o <?=$_GET['cod'] ?></legend>
-    <div class="row">
-      <div class="col-2">
-        <label for="anvisa">
-          <span>ANVISA </span>
-              <?php if($solic['usuario'] == $_SESSION['user']) : ?>
-              <input type="text" class="input-field" id="anvisa" name="anvisa"  
-                    value="<?= isset($_POST['anvisa']) ? $_POST['anvisa'] : $solic['anvisa']?>" required/>
-              <?php else : ?>
-                <div class="blockedField">
-                    <?= $solic['anvisa'] ?>
-                </div>
-              <?php endif ?>
-        </label>
-      </div> 
-      <div class="col-4">
-        <label for="fornecedor">
-          <span>Fornecedor 
-          </span>
-            <?php if($solic['usuario'] == $_SESSION['user']) : ?>
-                <input type="text" class="input-field" name="fornecedor" 
-                    value="<?= isset($_POST['fornecedor']) ? $_POST['fornecedor'] : $solic['fornecedor'] ?>" required/>
-            <?php else : ?>
-                <div class="blockedField">
-                    <?= $solic['fornecedor'] ?>
-                </div>
-            <?php endif ?>
-        </label>
-      </div> 
-      <div class="col-2">
-        <label for="solicitante">
-          <span>Solicitante 
-          </span>
-                <div class="blockedField">
-                    <?= $solic['usuario'] ?>
-                </div>
-        </label>
-      </div> 
-      <div class="col-2">
-        <label for="prioridade"><span>Prioridade</span>
-            <?php if($solic['usuario'] == $_SESSION['user']) : ?>
-                <select name="prioridade" class="select-field">
-                    <option value="0" <?php if(isset($_POST['prioridade']) == 0){if($solic['prioridade'] == 0){echo 'selected';}}else{if($_POST['prioridade'] == 0){echo 'selected';}}?> >Baixa</option>
-                    <option value="1" <?php if(isset($_POST['prioridade']) == 0){if($solic['prioridade'] == 1){echo 'selected';}}else{if($_POST['prioridade'] == 1){echo 'selected';}} ?> >Media</option>
-                    <option value="2" <?php if(isset($_POST['prioridade']) == 0){if($solic['prioridade'] == 2){echo 'selected';}}else{if($_POST['prioridade'] == 2){echo 'selected';}} ?> >Alta</option>
-                </select>
-            <?php else : ?>
-                <div class="blockedField">
-                    <?= $solic['prioridade_desc'] ?>
-                </div>
-            <?php endif ?>   
-        </label>
-      </div>
-      <div class="col-2">
+ <!-- =======INICIO FORM======    -->
+<form action="#" method="POST">
+  <fieldset>
+    <legend>SolicitaÁ„o <?=$_GET['cod'] ?></legend>
+    <!-- ============================================= -->
+    <div class="row"> <!-- row -->
+           <!-- =========================VIGENCIA  -->
+        <div class="col-2">
+            <label for="vigencia">
+                <span>Vigencia</span>
+                <input type="text" class="input-field" id="vigencia" name="vigencia"  value="<?= $solic['dt_vigencia'] ?> " required disabled/>
+            </label>
+        </div> 
+           <!-- =========================PRIORIDADE  -->
+        <div class="col-1">
+            <label for="prioridade">
+                <span>Prioridade</span>
+                <input type="text" class="input-field" id="prioridade" name="prioridade"  value="<?= $solic['prioridade'] ?> " required disabled/>
+            </label>
+        </div> 
+      <!-- ======DESCRI«√O============= -->
+        <div class="col-4">
+            <label for="descMat">
+                <span>DescriÁ„o </span>
+                <input type="text" class="input-field" id="descMat" name="descMat"  value="<?= $solic['descricao_mat'] ?> " required disabled/>
+          </label>
+        </div> 
+      <!-- ======TIPO MATERIAL============= -->
+        <div class="col-3">
+            <label for="tipoMat">
+                <span>Tipo Material </span>
+                <input type="text" class="input-field" id="tipoMat" name="tipoMat"  value="<?= $solic['tipo_mat'] ?> " required disabled/>
+          </label>
+        </div> 
+        <!-- ================ACAO============== -->
+        <div class="col-2">
           <?php if($solic['status'] != 2): ?>
-            <label for="acao"><span>Aùùo</span>
-            <select name="acao" class="select-field">
-                <?php if($solic['status'] != 1){echo "<option value='I'>Iniciar</option>";} ?>
-                <option value='F'>Finalizar</option>
-                <!-- fazer essa validaùùo pelo codigo da ùrea -->
-                <?php
-                    if($_GET['tipo']=='acom'){
-                        echo "<option value='D'>Devolver</option>";
-                    }elseif($_GET['tipo']=='pend'){
-                        echo "<option value='R'>Reencaminhar</option>";
-                    }
+            <label for="acao"><span>AÁ„o</span>
+                <select name="acao" class="select-field">
+                    <?php if($solic['status'] != 1){echo "<option value='I'>Iniciar</option>";} ?>
+                    <option value='F'>Finalizar</option>
+                    <!-- fazer essa validaùùo pelo codigo da ùrea -->
+                    <?php
+                        if($_GET['tipo']=='acom'){
+                            echo "<option value='D'>Devolver</option>";
+                        }elseif($_GET['tipo']=='pend'){
+                            echo "<option value='R'>Reencaminhar</option>";
+                        }
                     ?>
-                <option value="S" selected><i>Selecione</i></option>
-            </select>
+                    <option value="S" selected><i>Selecione</i></option>
+                </select>
             </label>
             <?php else : ?> 
                 <label for="Status">
@@ -147,28 +129,148 @@
                 </label>
             <?php endif ?> 
       </div>
-      <?php if($solic['anexo']) : ?>
+    </div> <!-- row -->
+    <!-- <hr> -->
+
+    <!-- ====================Dados do Material======================= -->
+    <div id="matData">
+      <div  <?php if($solic['flg_orcamento'] == 'S'){echo "class='d-none'";} else{echo "class='row'";}?> >
+             <!-- ======MANIPULADO============= -->
         <div class="col-1">
-            <label for="anexo">
-            <span>Anexo 
-                <?php 
-                    echo "<a href='{$solic['anexo']}' target='_blank'>
-                                <img class='icon_m' src='src/img/anexo.png'>
-                        </a>"
-                ?>
+            <label for="manipulado">
+                <span>Manipulado </span>
+                <input type="text" class="input-field" id="manipulado" name="manipulado"  value="<?= $solic['manipulado'] ?> " required disabled/>
+          </label>
+        </div> 
+
+      <!-- ================================APRESENTACAO -->
+        <div class="col-3">
+            <label for="apresentacao">
+                <span>Forma Apresentacao </span>
+                <input type="text" class="input-field" id="apresentacao" name="apresentacao"  value="<?= $solic['FORMA_AP'] ?> " required disabled/>
+          </label>
+        </div> 
+    <!-- ===========================ANVISA -->
+        <div class="col-2">
+            <label for="anvisa">
+                <span>Anvisa</span>
+                <input type="text" class="input-field" id="anvisa" name="anvisa"  value="<?= $solic['FORMA_AP'] ?> " required disabled/>
+          </label>
+        </div> 
+    <!-- ===========================REF FABRICANTE -->
+        <div class="col-2">
+            <label for="refFabricante">
+                <span>Ref. Fabricante </span>
+                <input type="text" class="input-field" id="refFabricante" name="refFabricante"  value="<?= $solic['ref_fabricante'] ?> " required disabled/>
+          </label>
+        </div> 
+        <!-- ======================TIPO DEMANDA -->
+        <div class="col-2">
+            <label for="tipoDemanda">
+                <span>Tipo de Demanda </span>
+                <input type="text" class="input-field" id="tipoDemanda" name="tipoDemanda"  value="<?= $solic['tipo_demanda'] ?> " required disabled/>
             </label>
         </div> 
-      <?php endif?>
+        <!-- ===========================FRACIONADO -->
+        <div class="col-1">
+            <label for="fraciona">
+                <span>Fraciona</span>
+                <input type="text" class="input-field" id="fraciona" name="fraciona"  value="<?= $solic['fraciona'] ?> " required disabled/>
+            </label>
+        </div> 
+        <!-- ===========================MOVIMENTA ESTOQUE -->
+        <div class="col-1">
+            <label for="movEst">
+                <span>Mov. Est.</span>
+                <input type="text" class="input-field" id="movEst" name="movEst"  value="<?= $solic['mov_est'] ?> " required disabled/>
+            </label>
+        </div> 
+            
+            <!-- ===========================MOVIMENTA SUB-ESTOQUE -->
+        <div class="col-2">
+            <label for="movSubEst">
+                <span>Mov. Sub. Est.</span>
+                <input type="text" class="input-field" id="movSubEst" name="movSubEst"  value="<?= $solic['mov_sub_est'] ?> " required disabled/>
+            </label>
+        </div> 
+        <!-- ================Centro de custo -->
+        <div class="col-2">
+            <label for="centroCusto">
+                <span>Centro de Custo</span>
+                <input type="text" class="input-field" id="centroCusto" name="centroCusto"  value="<?= $solic['centro_custo'] ?> " required disabled/>
+            </label>
+        </div> 
+        <!-- ========================CLASSIF CONTABIL -->
+        <div class="col-3">
+            <label for="classCont">
+                <span>ClassificaÁ„o Contabil</span>
+                <input type="text" class="input-field" id="classCont" name="classCont"  value="<?= $solic['class_cont'] ?> " required disabled/>
+            </label>
+        </div> 
+        <!-- ========================CLASS FIN -->
+        <div class="col-3">
+            <label for="classFin">
+                <span>Sub Grupo Receita/Despesa</span>
+                <input type="text" class="input-field" id="classFin" name="classFin"  value="<?= $solic['class_fin_desc'] ?> " required disabled/>
+            </label>
+        </div> 
+      </div><!-- Fim row -->
+    </div>
+  <!-- <hr id="hrMat"> -->
+<!-- ===================Dados do Agendamento============== -->
+    <div  <?php if($solic['flg_agendamento'] == 'N'){echo "class='d-none'";} else{echo "class='row'";}?>>
+        <!-- ==============AGENDAMENTO========= -->
+        <div class="col-2">
+            <label for="agendamento">
+                <span>Agendamento:</span>
+                <input type="text" class="input-field" id="agendamento" name="agendamento"  value="<?= $solic['cod_agenda_ccir'] ?> " required disabled/>
+            </label>
+        </div> 
+        <!-- =============MEDICO====== -->
+        <div class="col-4">
+            <label for="medico">
+                <span>Nome do MÈdico:</span>
+                <input type="text" class="input-field" id="medico" name="medico"  value="<?= $solic['nome_medico'] ?> " required disabled/>
+            </label>
+        </div> 
+      <!-- </div> -->
+     
+    </div>
+    <hr <?php if($solic['flg_agendamento'] == 'N'){echo "class='d-none'";} else{echo "class='d-block'";}?>>
+    <div class="row">
+        <div class="col-12">
+            <span style="color: black;font-weight: bold;font-size: 13px;">Anexos</span>
+        </div>
+        <?php 
+        if(isset($anexos)==1){
+            foreach($anexos as $anexo){
+                echo "<div class='col-6 '>
+                        <div class='anexo'>
+                        <a href='{$anexo['path_anexo']}' target='_blank'>{$anexo['nome_arquivo']}</a>
+                        </div>
+                </div>";
+            } 
+        }else{
+            echo "<div class='col-6 '>
+                    <span style='color:red;font-size: 13px;'>Nenhum anexo inserido.</span>
+                  </div>";
+        }
+        ?>
+
+    </div>
+
+
+      <!-- =================================================================================================== -->
       <div class="col-12"> 
         <label for="observacoes">
-            <span>Observaùùes:</span>
+            <span>ObservaÁıes:</span>
             <textarea name="observacoes" class="textarea-field"><?php if($_POST['observacoes'] != null){ echo $_POST['observacoes'];} ?></textarea>
         </label>
         <input type="submit" value="Gravar" />
       </div>
       <div class="col-12"> 
         <label for="obsHistorico">
-            <span>Observaùùes - Histùrico:</span>
+            <span>ObservaÁıes - HistÛrico:</span>
             <div class="blockedField_div">
                     <?php if(count($obsHist) > 0){
                         foreach($obsHist as $obs){
@@ -184,11 +286,11 @@
     </fieldset>
 </form>
 </div>
-    <?php else:
-    echo "<div class='message'>
-                <a href='index.php?file=telas/acompanharSolicitacao.php'>    
-                    Selecione uma solicitaùùo na tela de Acompanhamento
-                </a>
-          </div>";
-    endif
+<?php else:
+echo "<div class='message'>
+            <a href='index.php?file=telas/acompanharSolicitacao.php'>    
+                Selecione uma solicitaÁ„o na tela de Acompanhamento
+            </a>
+        </div>";
+endif
 ?>

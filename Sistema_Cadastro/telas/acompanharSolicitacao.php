@@ -1,8 +1,9 @@
+<script src="https://kit.fontawesome.com/25fe18b66a.js" crossorigin="anonymous"></script>
 <meta charset="windows-1252">
 <h4>Acompanhar Solicitações:</h4>
 <?php
-require_once("recursos/db/db_teste_ha.php");
-require_once("recursos/functions/funcoes.php");
+// require_once("recursos/db/db_teste_ha.php");
+require_once("src/functions/funcoes.php");
 $filter['status'] = 99;
 $filter['prioridade'] = 99;
 if(isset($_POST['status']) == 1){
@@ -24,8 +25,6 @@ $solicitacoes = buscaSolicitacoes($filter);
         <table id='table'>
             <tr>
                 <th>Cod.</th>
-                <th>Anvisa</th>
-                <th>Agendamento</th>
                 <th>Status</th>
                 <th>Prioridade</th>
                 <th>Solicitante</th>
@@ -38,15 +37,13 @@ $solicitacoes = buscaSolicitacoes($filter);
                 foreach($solicitacoes as $solic){
                 echo  "<tr>
                             <td>{$solic['codigo']     }  </td>
-                            <td>{$solic['anvisa']     }  </td>
-                            <td>{$solic['cod_agenda_ccir']}  </td>
                             <td>{$solic['status']     }  </td>
                             <td>{$solic['prioridade'] }  </td>
-                            <td>{$solic['usuario']}  </td>
-                            <td>{$solic['dt_solic']}  </td>
+                            <td>{$solic['solicitante']}  </td>
+                            <td>{$solic['dt_solicitacao']}  </td>
                             <td>
                                 <a class='tooltip' href='index.php?file=telas/gerenciarSolicitacao.php&cod={$solic['codigo']}&tipo=acom'>
-                                    <img class='icon' src='src/img/lupa.png'>
+                                <i class='fas fa-cog'></i>
                                     <span class='tooltiptext'>Gerenciar</span>
                                 </a>
                             </td>
@@ -87,4 +84,4 @@ $solicitacoes = buscaSolicitacoes($filter);
         </form>
     </div>
 </div>
-    
+

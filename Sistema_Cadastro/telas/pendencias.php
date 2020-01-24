@@ -1,6 +1,6 @@
 <h4>Pendencias</h4>
 <?php   
-require_once("recursos/functions/funcoes.php");
+require_once("src/functions/funcoes.php");
 $solicitacoes = buscaSolicitacoesPend($_SESSION['user']);
 ?>
 <div class='row'>
@@ -17,6 +17,7 @@ $solicitacoes = buscaSolicitacoesPend($_SESSION['user']);
             </tr>             
         <?php 
             // for ($i = 1; $i <= count($numero); $i++){
+            if ($solicitacoes){                
                 foreach($solicitacoes as $solic){
                 echo  "<tr>
                             <td>{$solic['codigo']     }  </td>
@@ -33,7 +34,7 @@ $solicitacoes = buscaSolicitacoesPend($_SESSION['user']);
                         </td>
                        </tr>";
                 }
-                // }
+            }
         ?>
         </table>
     </div>
